@@ -6,19 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-    <header>
-        <span class="title">MyShop</span>
-
-        <a href="cartView.html" class="cart-ico">
-            <div>
-                <span>Koszyk</span>
-                <span>(0)</span>
-                <span>0</span>
-                <span>zł</span>
-            </div>
-        </a>
-    </header>
-
+<header th:replace="fragments/header::ShopHeader"></header>
     <div class="main-content">
         <div class="item" th:each="item : ${items}">
             <p class="item-name" th:text="${item.name}"></p>
@@ -30,7 +18,7 @@
                 <span>zł</span>
             </div>
 
-            <a href="" class="add-btn">Dodaj</a>
+            <a th:href="@{/add/{id}(id=${item.id})}" class="add-btn">Dodaj</a>
         </div>
 
 
