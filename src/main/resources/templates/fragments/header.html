@@ -8,10 +8,13 @@
 <header th:fragment="ShopHeader">
     <span class="title">MyShop</span>
 
-    <a href="/cart" class="cart-ico">
+    <a th:href="@{/order/cart}" class="cart-ico">
         <div>
             <span>Koszyk</span>
-            <span th:text="${session.total != null ? session.total : '0.00'}"></span>
+            <span>( </span>
+            <span th:text="${@cart.counter}"></span>
+            <span>)</span>
+            <span th:text="${@cart.sum}"></span>
             <span>zł</span>
         </div>
     </a>
