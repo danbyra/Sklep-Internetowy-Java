@@ -3,7 +3,6 @@ package com.example.sklepinternetowy.kontroler;
 import com.example.sklepinternetowy.Cart;
 import com.example.sklepinternetowy.model.Item;
 import com.example.sklepinternetowy.repository.ItemRepository;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +33,7 @@ public class HomeControler
         return "home";
     }
     @GetMapping("/add/{itemId}")
-    public String addItemToCart(@PathVariable("itemId") long itemId,HttpSession session) {
+    public String addItemToCart(@PathVariable("itemId") long itemId) {
         Optional<Item> itemOptional=itemRepository.findById(itemId);
 
         if(itemOptional.isPresent()) {
