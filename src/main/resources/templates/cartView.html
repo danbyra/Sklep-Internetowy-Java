@@ -18,15 +18,25 @@
                         <img th:src="${cartItem.item.imageURL}">
                     </td>
                     <td th:text="${cartItem.item.name}">Nazwa produktu</td>
-                    <td>1 szt.</td>
                     <td th:text="${cartItem.item.price}">0.00</td>
+                    <td>
+                        <a class="btn" th:href="@{/order/cart/decrease/{id}(id=${cartItem.item.id})}">−</a>
+                        <span th:text="${cartItem.counter}"></span>
+                        <a class="btn" th:href="@{/order/cart/increase/{id}(id=${cartItem.item.id})}">+</a>
+                    </td>
+
+                    <td th:text="${cartItem.price}">0.00</td>
+
+                    <td>
+                        <a class="btn" th:href="@{/order/cart/remove/{id}(id=${cartItem.item.id})}">X</a>
+                    </td>
                 </tr>
             </table>
 
             <div class="summary">
                 <p><span>Do zapłaty </span><span th:text="${@cart.sum}">0.00</span>zł</p>
             </div>
-            <a href="" class="add-btn">Dalej</a>
+            <a th:href="@{/summary}" class="add-btn">Dalej</a>
         </div>
     </div>
 </body>

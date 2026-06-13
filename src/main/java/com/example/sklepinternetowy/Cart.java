@@ -81,4 +81,9 @@ public class Cart {
         });
         recarecalculatePriceAndCounter();
     }
+
+    public void removeItemCompletly(Item item) {
+        cartItems.removeIf(ci->ci.isEquals(item));
+        recarecalculatePriceAndCounter();
+    }
 }

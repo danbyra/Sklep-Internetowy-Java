@@ -1,30 +1,27 @@
 package com.example.sklepinternetowy.kontroler;
 
-import com.example.sklepinternetowy.Cart;
+import com.example.sklepinternetowy.ItemOperation;
 import com.example.sklepinternetowy.model.Item;
 import com.example.sklepinternetowy.repository.ItemRepository;
+import com.example.sklepinternetowy.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class HomeControler
 {
     private final ItemRepository itemRepository;
-    private final Cart cart;
+    private final CartService cartService;
     @Autowired
-    public HomeControler(ItemRepository itemRepository,Cart cart) {
+    public HomeControler(ItemRepository itemRepository, CartService cartService) {
         this.itemRepository = itemRepository;
-        this.cart = cart;
+        this.cartService = cartService;
     }
-
     @GetMapping("/")
     //@ResponseBody
         public String home(Model model) {
@@ -34,12 +31,7 @@ public class HomeControler
     }
     @GetMapping("/add/{itemId}")
     public String addItemToCart(@PathVariable("itemId") long itemId) {
-        Optional<Item> itemOptional=itemRepository.findById(itemId);
-
-        if(itemOptional.isPresent()) {
-            Item item=itemOptional.get();
-            cart.addItem(item);
-        }
+        cartService.manageCart(itemId, ItemOperation.INCREASE);
         return "redirect:/";
     }
     @GetMapping("/cart")
