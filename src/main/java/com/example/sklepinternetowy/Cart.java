@@ -86,4 +86,10 @@ public class Cart {
         cartItems.removeIf(ci->ci.isEquals(item));
         recarecalculatePriceAndCounter();
     }
+
+    public void clearCart(){
+        this.cartItems.clear();
+        this.counter=0;
+        this.sum=BigDecimal.ZERO;
+    }
 }

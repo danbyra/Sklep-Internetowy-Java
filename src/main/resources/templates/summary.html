@@ -6,11 +6,25 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<header th:replace="fragments/header::ShopHeader"></header>>
+<header th:replace="fragments/header::ShopHeader"></header>
     <div class="main-content">
 
-            <table cellspacing="0" style="border: 0px">
+            <table cellspacing="0" style="border:0px">
                 <tr>
+                    <th>No.</th>
+                    <th></th>
+                    <th>Nazwa</th>
+                    <th>Ilość</th>
+                    <th>Suma</th>
+                </tr>
+                <tr th:each="cartItem, iterStat : ${cart.cartItems}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td>
+                        <img th:src="@{${cartItem.item.imageURL}}" width="50"/>
+                    </td>
+                    <td th:text="${cartItem.item.name}">Nazwa produktu</td>
+                    <td th:text="${cartItem.counter}">1</td>
+                    <td th:text="${cartItem.price}">10.50 zł</td>
                 </tr>
             </table>
             <div class="summary">
@@ -19,15 +33,15 @@
 
         <div class="summary">
 
-            <form>
+            <form th:action="@{/order/saveorder}" method="post">
                 <label>Imię</label>
                 <input type="text" name="firstName" required>
                 <label>Nazwisko</label>
                 <input type="text" name="lastName" required>
-                <label>Address</label>
-                <input type="text" name="address" required>
-                <label>kod pocztowy</label>
-                <input type="text" name="postCode" required>
+                <label>E-mail</label>
+                <input type="email" name="email" required>
+                <label>Kod pocztowy</label>
+                <input type="text" name="zipCode" required>
                 <label>Miasto</label>
                 <input type="text" name="city" required>
                 <button type="submit" class="add-btn">Zamów</button>

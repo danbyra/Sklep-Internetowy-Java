@@ -4,12 +4,14 @@ import com.example.sklepinternetowy.Cart;
 import com.example.sklepinternetowy.ItemOperation;
 import com.example.sklepinternetowy.model.Item;
 import com.example.sklepinternetowy.repository.ItemRepository;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
 public class CartService {
     private final ItemRepository itemRepository;
+    @Getter
     private final Cart cart;
 
     public  CartService(ItemRepository item,Cart cart){
@@ -26,8 +28,7 @@ public class CartService {
             }
         }
     }
-
-//    public void addToCart(long itemId){
+    //    public void addToCart(long itemId){
 //        Optional<Item> item=itemRepository.findById(itemId);
 //        item.ifPresent(cart::addItem);
 //    }

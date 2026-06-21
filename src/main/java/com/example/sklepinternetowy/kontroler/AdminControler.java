@@ -1,22 +1,28 @@
 package com.example.sklepinternetowy.kontroler;
 
 import com.example.sklepinternetowy.model.Item;
+import com.example.sklepinternetowy.model.order.Order;
 import com.example.sklepinternetowy.repository.ItemRepository;
+import com.example.sklepinternetowy.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminControler
 {
     private final ItemRepository itemRepository;
+    private final OrderRepository orderRepository;
     @Autowired
-    public AdminControler(ItemRepository itemRepository)
-    {
+    public AdminControler(ItemRepository itemRepository,OrderRepository orderRepository) {
         this.itemRepository = itemRepository;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping
@@ -25,10 +31,14 @@ public class AdminControler
         return "adminView/addItem.html";
     }
     @PostMapping
-    public String addItem(Item item)
-    {
+    public String addItem(Item item) {
 
         itemRepository.save(item);
         return "redirect:/";
+    }
+    @GetMapping("/showorders")
+    @ResponseBody
+    public List<Order> showOrders(){
+        return orderRepository.findAll();
     }
 }

@@ -7,14 +7,12 @@
 </head>
 <body>
     <header>
-        <span class="title">MyShop</span>
+        <a th:href="@{/}" class="logo-link"><span class="title">MyShop</span></a>
     </header>
 
     <div class="main-content">
 
         <div class="summary">
-            <h1>Dodaj </h1>
-
             <form th:action="@{/admin}" method="POST">
                 <label>Nazwa</label>
                 <input type="text" name="name">
@@ -24,7 +22,7 @@
                 <input type="text" name="price">
                 <label>urlImg</label>
                 <input type="text" name="imageURL">
-                <button>Dodaj</button>
+                <button type="submit" class="add-btn">Dodaj</button>
             </form>
 
         </div>

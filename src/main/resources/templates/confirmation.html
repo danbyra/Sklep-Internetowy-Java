@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Potwierdzenie Zamówienia | MyShop</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <header th:replace="~{fragments/header::ShopHeader}"></header>
+
+    <div class="main-content flex-center">
+        <div class="card confirmation-card">
+            <div class="success-icon-wrapper">
+                <div class="success-icon">✓</div>
+            </div>
+            <h1 class="confirmation-title">Dziękujemy za zamówienie!</h1>
+            <p class="confirmation-text">Twoje zamówienie zostało złożone pomyślnie i jest przetwarzane przez nasz zespół.</p>
+            <div class="action-wrapper">
+                <a th:href="@{/}" class="add-btn back-home-btn">Powrót do strony głównej</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
